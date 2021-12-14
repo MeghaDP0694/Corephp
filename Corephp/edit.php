@@ -1,4 +1,17 @@
-<?php include('connection.php'); ?>
+<?php 
+include('connection.php');
+if(isset($_REQUEST['id'])){
+	echo $id=$_REQUEST['id'];
+	$query="select * from Product where pid=$id";
+	$res=$connection->query($query);
+	$row=$res->fetch_object();
+	/*echo "<pre>";
+	print_r($row);*/
+	
+}
+
+ ?>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,26 +26,26 @@
 <body>
 
 <div class="container">
-  <h2>Product Add</h2>
+  <h2>Product Edit</h2>
   <form method="post">
     <div class="form-group">
       <label for="email">Productname:</label>
-      <input type="text" class="form-control"  placeholder="Enter Productname" name="pname">
+      <input type="text" class="form-control"  placeholder="Enter Productname" name="pname" value="<?php echo $row->pname;?>">
     </div>
     <div class="form-group">
       <label for="pwd">Price:</label>
-      <input type="text" class="form-control"  placeholder="Enter price" name="price">
+      <input type="text" class="form-control"  placeholder="Enter price" name="price" value="<?php echo $row->price?>">
     </div>
      <div class="form-group">
       <label for="pwd">quantity:</label>
-      <input type="text" class="form-control"  placeholder="Enter quantity" name="quantity">
+      <input type="text" class="form-control"  placeholder="Enter quantity" name="quantity" value="<?php echo $row->qty?>">
     </div>
      <div class="form-group">
       <label for="pwd">Description:</label>
-      <input type="text" class="form-control"  placeholder="Enter Description" name="desc">
+      <input type="text" class="form-control"  placeholder="Enter Description" name="desc" value="<?php echo $row->desciption;?>">
     </div>
     
-    <button type="submit" name="submit" class="btn btn-primary">Submit</button >
+    <button type="submit" name="submit" class="btn btn-primary">Update</button >
   </form>
 </div>
 
@@ -45,7 +58,8 @@ if(isset($_REQUEST['submit'])){
    $qty=$_REQUEST['quantity'];
    $descs=$_REQUEST['desc'];
 
-   $query="insert into product(pname,price,qty,desciption)values('$pname','$price',$qty,'$descs')";
+   $query="update product set pname='$pname',price='$price',qty='$qty',desciption='$descs' where pid='$id'";
+   
    $connection->query($query);
    header("Location:Viewproduct.php");
 
