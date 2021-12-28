@@ -23,6 +23,31 @@ class Controller extends Model{
 		$product=$this->select_data('product');
 		include('../View/viewproduct.php');
 	}
+	public function addProduct(){
+		include('../View/addprodutc.php');
+		if(isset($_REQUEST['submit'])){
+		   $pname=$_REQUEST['pname'];
+		   $price=$_REQUEST['price'];
+		   $qty=$_REQUEST['quantity'];
+		   $descs=$_REQUEST['desc'];
+		   $insertarray=["pname"=>$pname,"price"=>$price,"qty"=>$qty,"desciption"=>$descs];
+		   $this->insert_data("product",$insertarray);
+		   header("Location:".$this->baseurl."/product");
+		}
+	}
+	public function addCity(){
+		$table="city";
+		$cityarray=['cid'=>4];
+		$this->delete_data($table,$cityarray);
+	}
+	public function deleteproduct(){
+		if(isset($_REQUEST['id'])){
+			echo $id=$_REQUEST['id'];
+			$array=['pid'=>$id];
+			$this->delete_data("product",$array);
+			header("Location:".$this->baseurl."/product");
+		}
+	}
 }
 
 
@@ -46,6 +71,16 @@ if(isset($_SERVER['PATH_INFO'])){
 		case '/product':
 		$obj->getProduct();
 		break;
+		case '/addproduct':
+		$obj->addProduct();
+		break;
+		case '/addcity';
+		$obj->addCity();
+		break;
+		case '/delproduct':
+		$obj->deleteproduct();
+		break;
+
 
 	}
 	
