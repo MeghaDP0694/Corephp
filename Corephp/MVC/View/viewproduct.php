@@ -25,6 +25,7 @@
         <th>Price</th>
         <th>QTY</th>
         <th>Description</th>
+        <th>Acition</th>
        
        
       </tr>
@@ -39,6 +40,7 @@
           <td><?php echo $row->price ?></td>
           <td><?php echo $row->qty ?></td>
           <td><?php echo $row->desciption ?></td>
+          <td><a href="<?php echo $this->baseurl?>/delproduct?id=<?php echo $row->pid?>">DELETE</a></td>
 
 
         </tr>
