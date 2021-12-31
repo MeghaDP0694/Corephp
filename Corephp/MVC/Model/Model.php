@@ -32,6 +32,40 @@ class Model{
 		$this->connection->query($del);
 
 	}
+	public function select_where($table,$data){
+		$sel="select *  from $table where 1=1";
+		foreach ($data as $key => $value) {
+			$sel.= " AND ".$key." = '".$value."' ";
+		}
+		$res=$this->connection->query($sel);
+		while($row=$res->fetch_object()){
+			$rw[]=$row;
+		}
+		return $rw;
+	}
+	public function update_data($table,$data,$where){
+
+		//"update $table set key ='value',key='value' where id=2"
+
+		$up="update $table set";
+		$count=count($data);
+		$i=0;
+		foreach ($data as $key => $value) {
+			if($i<$count-1){
+				$up.= " ".$key." ='".$value." ', ";
+			}
+			else{
+				$up.= " ".$key." ='".$value." ' ";
+			}
+			
+		$i++;
+		}
+		$up.=" where 1=1 ";
+		foreach ($where as $key => $value) {
+			$up.= " AND ".$key." = '".$value."' ";
+		}
+		$this->connection->query($up);
+	}
 }
 
 
