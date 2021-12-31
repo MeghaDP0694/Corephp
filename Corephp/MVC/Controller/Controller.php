@@ -48,6 +48,25 @@ class Controller extends Model{
 			header("Location:".$this->baseurl."/product");
 		}
 	}
+	public function editProduct(){
+		if(isset($_REQUEST['id'])){
+			$id=$_REQUEST['id'];
+			$data=$this->select_where("product",['pid'=>$id]);
+			$data=$data[0];
+			/*echo "<pre>";
+			print_r($data[0]);*/
+			include("../View/addprodutc.php");
+			if(isset($_REQUEST['submit'])){
+		   $pname=$_REQUEST['pname'];
+		   $price=$_REQUEST['price'];
+		   $qty=$_REQUEST['quantity'];
+		   $descs=$_REQUEST['desc'];
+		   $updatearray=["pname"=>$pname,"price"=>$price,"qty"=>$qty,"desciption"=>$descs];
+		   $this->update_data("product",$updatearray,['pid'=>$id]);
+		   header("Location:".$this->baseurl."/product");
+		}
+		}
+	}
 }
 
 
@@ -74,11 +93,14 @@ if(isset($_SERVER['PATH_INFO'])){
 		case '/addproduct':
 		$obj->addProduct();
 		break;
-		case '/addcity';
+		case '/addcity':
 		$obj->addCity();
 		break;
 		case '/delproduct':
 		$obj->deleteproduct();
+		break;
+		case '/editproduct':
+		$obj->editProduct();
 		break;
 
 

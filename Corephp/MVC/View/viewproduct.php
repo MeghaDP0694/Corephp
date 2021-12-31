@@ -41,6 +41,7 @@
           <td><?php echo $row->qty ?></td>
           <td><?php echo $row->desciption ?></td>
           <td><a href="<?php echo $this->baseurl?>/delproduct?id=<?php echo $row->pid?>">DELETE</a></td>
+          <td><a href="<?php echo $this->baseurl?>/editproduct?id=<?php echo $row->pid?>">EDIT</a></td>
 
 
         </tr>

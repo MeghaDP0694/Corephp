@@ -17,19 +17,19 @@
   <form method="post">
     <div class="form-group">
       <label for="email">Productname:</label>
-      <input type="text" class="form-control"  placeholder="Enter Productname" name="pname">
+      <input type="text" class="form-control"  placeholder="Enter Productname" name="pname" value="<?php echo $data->pname ??''?>">
     </div>
     <div class="form-group">
       <label for="pwd">Price:</label>
-      <input type="text" class="form-control"  placeholder="Enter price" name="price">
+      <input type="text" class="form-control"  placeholder="Enter price" name="price" value="<?php echo $data->price ??''?>">
     </div>
      <div class="form-group">
       <label for="pwd">quantity:</label>
-      <input type="text" class="form-control"  placeholder="Enter quantity" name="quantity">
+      <input type="text" class="form-control"  placeholder="Enter quantity" name="quantity" value="<?php echo $data->qty ??''?>">
     </div>
      <div class="form-group">
       <label for="pwd">Description:</label>
-      <input type="text" class="form-control"  placeholder="Enter Description" name="desc">
+      <input type="text" class="form-control"  placeholder="Enter Description" name="desc" value="<?php echo $data->desciption ??''?>">
     </div>
     
     <button type="submit" name="submit" class="btn btn-primary">Submit</button >
